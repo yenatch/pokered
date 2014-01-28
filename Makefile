@@ -1,4 +1,5 @@
 PYTHON := python
+POKEMONTOOLS := extras/pokemontools
 .SUFFIXES: .asm .tx .o .gbc
 .PHONY: all clean red blue compare
 .SECONDEXPANSION:
@@ -25,7 +26,7 @@ ROMS := pokered.gbc pokeblue.gbc
 
 # generate dependencies for each object
 $(shell $(foreach obj, $(OBJS), \
-	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) extras/pokemontools/scan_includes.py $(obj:.o=.asm))) \
+	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) $(POKEMONTOOLS)/scan_includes.py $(obj:.o=.asm))) \
 	$(eval ALL_DEPENDENCIES += $($(obj:.o=)_DEPENDENCIES)) \
 ))
 
@@ -65,4 +66,18 @@ pokered.gbc: $(RED_OBJS)
 pokeblue.gbc: $(BLUE_OBJS)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON BLUE" $@
+
+
+%.2bpp:: %.png
+	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-2bpp $<
+%.png:: %.2bpp
+	$(PYTHON) $(POKEMONTOOLS)/gfx.py 2bpp-to-png $<
+
+%.1bpp:: %.png
+	$(PYTHON) $(POKEMONTOOLS)/gfx.py png-to-1bpp $<
+%.png:: %.1bpp
+	$(PYTHON) $(POKEMONTOOLS)/gfx.py 1bpp-to-png $<
+
+%.pal: ;
+%.bin: ;
 
