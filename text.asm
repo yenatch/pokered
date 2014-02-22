@@ -14,7 +14,7 @@ TEXT_11 EQU $2a
 POKEDEX_TEXT EQU $2b
 MOVE_NAMES   EQU $2c
 
-INCLUDE "macros.asm"
+INCLUDE "constants.asm"
 
 
 
