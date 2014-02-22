@@ -4,8 +4,6 @@ PYTHON := python
 .SECONDEXPANSION:
 
 
-TEXTQUEUE :=
-
 RED_OBJS  := \
 pokered.o \
 audio_red.o \
@@ -45,14 +43,8 @@ redrle: extras/redtools/redrle.c
 
 
 %.asm: ;
-.asm.tx:
-	$(eval TEXTQUEUE += $<)
-	@rm -f $@
-
-$(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
-	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-	@$(eval TEXTQUEUE :=)
-	rgbasm -o $@ $*.tx
+$(OBJS): $$*.asm $$($$*_DEPENDENCIES)
+	rgbasm -o $@ $<
 
 
 OPTIONS = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03
