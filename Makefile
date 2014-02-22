@@ -1,5 +1,5 @@
 PYTHON := python
-.SUFFIXES: .asm .tx .o .gbc
+.SUFFIXES: .asm .o .gbc
 .PHONY: all clean red blue compare
 .SECONDEXPANSION:
 
@@ -34,7 +34,6 @@ compare:
 clean:
 	rm -f $(ROMS)
 	rm -f $(OBJS)
-	find . -iname '*.tx' -exec rm {} +
 	rm -f redrle
 
 
