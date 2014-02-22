@@ -1,5 +1,7 @@
 INCLUDE "version.asm"
 
+INCLUDE "charmap.asm"
+
 INCLUDE "macros.asm"
 
 INCLUDE "hram.asm"
