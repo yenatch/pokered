@@ -43,7 +43,7 @@ redrle: extras/redtools/redrle.c
 
 
 %.asm: ;
-$(OBJS): $$*.asm $$($$*_DEPENDENCIES)
+%.o: %.asm $$(%_DEPENDENCIES)
 	rgbasm -o $@ $<
 
 
