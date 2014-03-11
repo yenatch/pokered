@@ -15182,6 +15182,8 @@ AskForMonNickname: ; 64eb (1:64eb)
 	ld a, [$cf91]
 	ld [$d11e], a
 	call GetMonName
+
+if 0 ; nope
 	ld hl, DoYouWantToNicknameText ; $6557
 	call PrintText
 	FuncCoord 14, 7 ; $c43a
@@ -15190,10 +15192,13 @@ AskForMonNickname: ; 64eb (1:64eb)
 	ld a, $14
 	ld [$d125], a
 	call DisplayTextBoxID
+endc
+
 	pop hl
 	ld a, [wCurrentMenuItem] ; $cc26
 	and a
-	jr nz, .asm_654c
+	jr .asm_654c
+
 	ld a, [$cfcb]
 	push af
 	xor a
@@ -77683,15 +77688,21 @@ Func_4fda5: ; 4fda5 (13:7da5)
 .asm_4fdee
 	ld [hli], a
 	ld [hl], $50
+	ret
+
 	ld hl, UnnamedText_4fe3f ; $7e3f
 	call PrintText
 	scf
 	ret
+
 .asm_4fdf9
+	ret
+
 	ld hl, UnnamedText_4fe44 ; $7e44
 	call PrintText
 	and a
 	ret
+
 .asm_4fe01
 	call Func_4fe11
 	call AddPokemonToParty
@@ -77717,6 +77728,8 @@ Func_4fe11: ; 4fe11 (13:7e11)
 	pop af
 	ld [$d11e], a
 	call GetMonName
+	ret
+
 	ld hl, UnnamedText_4fe39 ; $7e39
 	jp PrintText
 
