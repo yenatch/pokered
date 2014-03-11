@@ -14729,6 +14729,7 @@ OakSpeech: ; 6115 (1:6115)
 	ld hl,IntroduceRivalText
 	call PrintText
 	call Func_69a4
+	call GiveAllMons
 
 Func_61bc: ; 61bc (1:61bc)
 	call GBFadeOut2
@@ -18344,6 +18345,44 @@ Func_7c18: ; 7c18 (1:7c18)
 	ld a, $1
 	ld [$cc3c], a
 	ret
+
+
+
+farcall: macro
+	ld b, BANK(\1)
+	ld hl, \1
+	call Bankswitch
+endm
+
+GiveAllMons:
+; Give one of each 151 mons at level 100.
+; Prompts a box change every 30 mons.
+
+	ld a, 001
+.loop
+	cp 151 + 1
+	ret nc
+
+	push af
+	ld a, [W_NUMINBOX]
+	cp 20 - 1
+	jr c, .dont_change_box
+	farcall Func_738a1
+.dont_change_box
+	pop af
+
+	push af
+	ld [$d11e], a
+	farcall PokedexToIndex
+	ld a, [$d11e]
+	ld b, a
+	ld c, 100
+	call GivePokemon
+	pop af
+
+	inc a
+	jr .loop
+
 
 
 SECTION "bank3",ROMX,BANK[$3]
