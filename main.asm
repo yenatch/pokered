@@ -3289,7 +3289,7 @@ Func_152e:: ; 152e (0:152e)
 GetMonHeader:: ; 1537 (0:1537)
 	ld a,[H_LOADEDROMBANK]
 	push af
-	ld a,BANK(BulbasaurBaseStats)
+	ld a,BANK(BaseStats)
 	ld [H_LOADEDROMBANK],a
 	ld [$2000],a
 	push bc
@@ -3317,7 +3317,7 @@ GetMonHeader:: ; 1537 (0:1537)
 	ld a,[$d11e]
 	dec a
 	ld bc,28
-	ld hl,BulbasaurBaseStats
+	ld hl,BaseStats
 	call AddNTimes
 	ld de,W_MONHEADER
 	ld bc,28
@@ -44926,6 +44926,9 @@ Moves: ; 38000 (e:4000)
 	db SUBSTITUTE  ,SUBSTITUTE_EFFECT         ,$00,NORMAL,  $FF,10
 	db STRUGGLE    ,RECOIL_EFFECT             ,$32,NORMAL,  $FF,10
 
+
+BaseStats:
+
 BulbasaurBaseStats: ; 383de (e:43de)
 	db DEX_BULBASAUR ; pokedex id
 	db 45 ; base hp
@@ -53232,7 +53235,7 @@ Func_3ad71: ; 3ad71 (e:6d71)
 	call Predef ; indirect jump to IndexToPokedex (41010 (10:5010))
 	ld a, [$d11e]
 	dec a
-	ld hl, BulbasaurBaseStats ; $43de
+	ld hl, BaseStats
 	ld bc, $1c
 	call AddNTimes
 	ld de, W_MONHEADER
