@@ -1,6 +1,7 @@
 # Build Red/Blue. Yellow is WIP.
 roms := pokered.gbc pokeblue.gbc
 
+path := ""
 
 .PHONY: all clean red blue yellow compare
 
@@ -50,7 +51,7 @@ compare:
 poketools := extras/pokemontools
 gfx       := $(PYTHON) $(poketools)/gfx.py
 pic       := $(PYTHON) $(poketools)/pic.py
-includes  := $(PYTHON) $(poketools)/scan_includes.py
+includes  := $(PYTHON) $(poketools)/scan_includes.py -i $(path)
 pre       := $(PYTHON) prequeue.py
 
 
@@ -58,7 +59,7 @@ pre       := $(PYTHON) prequeue.py
 # Collect file dependencies for objects in red/, blue/ and yellow/.
 # These aren't provided by rgbds by default, so we have to look for file includes ourselves.
 $(foreach ver, $(versions), \
-	$(eval $(ver)_asm := $(shell find $(ver) -iname '*.asm')) \
+	$(eval $(ver)_asm := $(shell find $(path)$(ver) -iname '*.asm')) \
 	$(eval $(ver)_obj := $($(ver)_asm:.asm=.o)) \
 	$(eval all_obj += $($(ver)_obj)) \
 )
@@ -88,7 +89,7 @@ $(all_obj): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_dep))
 	@$(gfx) 2bpp $(2bppq);    $(eval 2bppq :=)
 	@$(gfx) 1bpp $(1bppq);    $(eval 1bppq :=)
 	@$(pic) compress $(picq); $(eval picq  :=)
-	rgbasm -h -o $@ $*.tx
+	rgbasm -i $(path) -h -o $@ $*.tx
 
 
 # Link objects together to build a rom.
