@@ -1,7 +1,7 @@
 # Build Red/Blue. Yellow is WIP.
 roms := pokered.gbc pokeblue.gbc
 
-path := ""
+path := src/
 
 .PHONY: all clean red blue yellow compare
 
