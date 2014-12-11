@@ -990,7 +990,7 @@ SafariZoneRestHouses:
 	db -1
 
 ; function that performs initialization for DisplayTextID
-DisplayTextIDInit: ; 7096 (1:7096)
+DisplayTextIDInit:: ; 7096 (1:7096)
 	xor a
 	ld [wListMenuID],a
 	ld a,[wAutoTextBoxDrawingControl]

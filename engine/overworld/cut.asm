@@ -46,6 +46,8 @@ asm_ef82: ; ef82 (3:6f82)
 	call Delay3
 	xor a
 	ld [hWY], a
+
+Cut2::
 	ld hl, UsedCutText
 	call PrintText
 	call LoadScreenTilesFromBuffer2
