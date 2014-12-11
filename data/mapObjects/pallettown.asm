@@ -12,10 +12,11 @@ PalletTownObject: ; 0x182c3 (size=58)
 	db $5, $3, $6 ; PalletTownText6
 	db $5, $b, $7 ; PalletTownText7
 
-	db $3 ; people
+	db $4 ; people
 	db SPRITE_OAK, $5 + 4, $8 + 4, $ff, $ff, $1 ; person
 	db SPRITE_GIRL, $8 + 4, $3 + 4, $fe, $0, $2 ; person
 	db SPRITE_FISHER2, $e + 4, $b + 4, $fe, $0, $3 ; person
+	db SPRITE_BOULDER, 7 + 4, 7 + 4, $ff, BOULDER_MOVEMENT_BYTE_2, 8
 
 	; warp-to
 	EVENT_DISP PALLET_TOWN_WIDTH, $5, $5 ; REDS_HOUSE_1F

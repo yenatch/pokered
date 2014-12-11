@@ -4446,8 +4446,10 @@ START_MONEY EQU $3000
 
 	ld [wcc49], a
 
+	ld a, -1 ; debug: all badges
 	ld hl, W_OBTAINEDBADGES
 	ld [hli], a
+	xor a
 
 	ld [hl], a
 

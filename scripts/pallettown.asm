@@ -164,6 +164,7 @@ PalletTownTextPointers: ; 18f88 (6:4f88)
 	dw PalletTownText5
 	dw PalletTownText6
 	dw PalletTownText7
+	dw BoulderText
 
 PalletTownText1: ; 18f96 (6:4f96)
 	db 8
