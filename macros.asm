@@ -43,6 +43,8 @@ callba: MACRO
 	call Bankswitch
 	ENDM
 
+farcall EQUS "callba"
+
 callab: MACRO
 	ld hl, \1
 	ld b, BANK(\1)
