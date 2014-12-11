@@ -959,7 +959,28 @@ GroundRoseText:: ; 24e0 (0:24e0)
 
 BoulderText:: ; 24e5 (0:24e5)
 	TX_FAR _BoulderText
-	db "@"
+	db 8 ; start_asm
+
+	ld a, [W_OBTAINEDBADGES]
+	bit 3, a ; RAINBOWBADGE
+	jr z, .done
+
+	ld d, STRENGTH
+	farcall HasPartyMove
+	ld a, [wWhichTrade]
+	and a
+	jr nz, .done
+
+	ld a, [wWhichPokemon]
+	push af
+	call ManualTextScroll ; wait for button press
+	pop af
+	ld [wWhichPokemon], a
+	call GetPartyMonName2
+	predef PrintStrengthTxt
+
+.done
+	jp TextScriptEnd
 
 MartSignText:: ; 24ea (0:24ea)
 	TX_FAR _MartSignText
