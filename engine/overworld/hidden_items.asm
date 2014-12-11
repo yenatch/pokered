@@ -9,7 +9,7 @@ HiddenItems: ; 76688 (1d:6688)
 	predef FlagActionPredef
 	ld a, c
 	and a
-	ret nz
+	jr nz, .nope
 	call EnableAutoTextBoxDrawing
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -18,6 +18,10 @@ HiddenItems: ; 76688 (1d:6688)
 	call GetItemName
 	ld a, $24
 	jp PrintPredefTextID
+
+.nope
+	predef TryFieldMove
+	ret
 
 INCLUDE "data/hidden_item_coords.asm"
 
