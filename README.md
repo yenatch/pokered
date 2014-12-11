@@ -1,19 +1,16 @@
-# Pokémon Red and Blue
+# Contextual field moves in Pokémon Red and Blue
 
-This is a disassembly of Pokémon Red and Blue.
+This mod implements the behavior of field moves in later Pokémon titles. They can be used by talking to relevant objects (like water, trees, or boulders).
 
-It builds the following roms:
+The player is given all badges and some toys to play with as an example.
 
-* Pokemon Red (UE) [S][!].gb  `md5: 3d45c1ee9abd5738df46d2bdda8b57dc`
-* Pokemon Blue (UE) [S][!].gb `md5: 50927e843568814f7ed45ec4f944bd8b`
-
-To set up the repository, see [**INSTALL.md**](INSTALL.md).
-
+This is a minor hack. It's based on [pokered][pokered].
 
 ## See also
 
-* Disassembly of [**Pokémon Crystal**][pokecrystal]
+* [pokecrystal][pokecrystal]
 * irc: **irc.freenode.net** [**#pret**][irc]
 
+[pokered]: https://github.com/iimarckus/pokered
 [pokecrystal]: https://github.com/kanzure/pokecrystal
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
