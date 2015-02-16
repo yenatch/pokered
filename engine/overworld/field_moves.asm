@@ -163,7 +163,7 @@ HasPartyMove::
 	dec e
 	jr nz, .check_move
 
-	ld a, wPartyMon2 - wPartyMon1
+	ld a, wPartyMon2 - wPartyMon1 - NUM_MOVES
 	add l
 	ld l, a
 	ld a, 0
